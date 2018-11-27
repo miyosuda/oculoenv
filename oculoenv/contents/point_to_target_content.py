@@ -139,6 +139,16 @@ class PointToTargetContent(BaseContent):
                 self._move_to_start_phase()
                 need_render = True
 
+        # Customized
+        info['phase'] = self.phase
+        if self.phase == PHASE_TARGET:
+            info['target'] = (self.target_sprite.pos_x,
+                              self.target_sprite.pos_y,
+                              self.target_sprite.width)
+            info['lure'] = (self.lure_sprite.pos_x,
+                            self.lure_sprite.pos_y,
+                            self.lure_sprite.width)
+
         done = self.step_count >= (MAX_STEP_COUNT - 1)
         return reward, done, need_render, info
 
